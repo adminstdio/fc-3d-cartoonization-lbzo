@@ -1,0 +1,60 @@
+{
+  "statefulConfig": {
+    "functionId": "9010dcb9-9fa0-4ed6-bea7-4bb9b1d2bef5",
+    "functionName": "fc-3d-cartoonization-2",
+    "description": "This is default function description by fc-deploy component",
+    "runtime": "custom-container",
+    "handler": "index.handler",
+    "timeout": 7200,
+    "initializer": "",
+    "initializationTimeout": 3,
+    "codeSize": 0,
+    "codeChecksum": "",
+    "memorySize": 32768,
+    "gpuMemorySize": 16384,
+    "cpu": 8,
+    "diskSize": 10240,
+    "environmentVariables": {},
+    "createdTime": "2023-04-27T06:23:24Z",
+    "lastModifiedTime": "2023-04-27T06:23:24Z",
+    "instanceConcurrency": 100,
+    "instanceSoftConcurrency": null,
+    "customContainerConfig": {
+      "accelerationInfo": {
+        "status": "Ready"
+      },
+      "accelerationType": "Default",
+      "args": "",
+      "command": "",
+      "image": "registry.cn-hangzhou.aliyuncs.com/fc-stable-diffusion/3d-cartoonization:0.3",
+      "imageAcclConfig": null,
+      "instanceID": null,
+      "serverlessImage": null,
+      "webServerMode": true
+    },
+    "caPort": 8080,
+    "instanceType": "fc.gpu.tesla.1",
+    "layers": null,
+    "layersArnV2": null,
+    "instanceLifecycleConfig": {
+      "preFreeze": {
+        "handler": "",
+        "timeout": 3
+      },
+      "preStop": {
+        "handler": "",
+        "timeout": 3
+      }
+    },
+    "customDNS": null,
+    "customRuntimeConfig": null,
+    "customHealthCheckConfig": null,
+    "name": "fc-3d-cartoonization-2",
+    "asyncConfiguration": {
+      "destinationConfig": null,
+      "maxAsyncEventAgeInSeconds": null,
+      "statefulInvocation": null,
+      "maxAsyncRetryAttempts": null
+    }
+  }
+}

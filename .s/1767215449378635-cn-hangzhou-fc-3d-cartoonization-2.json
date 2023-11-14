@@ -1,0 +1,43 @@
+{
+  "statefulConfig": {
+    "serviceName": "fc-3d-cartoonization-2",
+    "description": "fc-3d-cartoonization-2",
+    "role": "acs:ram::1767215449378635:role/aliyunfcdefaultrole",
+    "logConfig": {
+      "project": "",
+      "logstore": "",
+      "enableRequestMetrics": false,
+      "enableInstanceMetrics": false,
+      "logBeginRule": "None"
+    },
+    "serviceId": "66d7746a-a1d2-40f0-a78d-664cf9ae92ee",
+    "createdTime": "2023-04-27T06:23:23Z",
+    "lastModifiedTime": "2023-04-27T06:23:24Z",
+    "vpcConfig": {
+      "vpcId": "",
+      "vSwitchIds": [],
+      "securityGroupId": "",
+      "role": null,
+      "anytunnelViaENI": null
+    },
+    "internetAccess": true,
+    "nasConfig": {
+      "userId": -1,
+      "groupId": -1,
+      "mountPoints": []
+    },
+    "ossMountConfig": {
+      "mountPoints": []
+    },
+    "vendorConfig": null,
+    "tracingConfig": {
+      "type": null,
+      "params": null,
+      "jaegerConfig": null
+    },
+    "name": "fc-3d-cartoonization-2"
+  },
+  "statefulAutoConfig": {
+    "role": "acs:ram::1767215449378635:role/aliyunfcdefaultrole"
+  }
+}

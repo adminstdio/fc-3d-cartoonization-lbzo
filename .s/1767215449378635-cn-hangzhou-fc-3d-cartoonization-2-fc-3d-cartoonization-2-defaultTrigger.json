@@ -1,0 +1,28 @@
+{
+  "statefulConfig": {
+    "triggerName": "defaultTrigger",
+    "description": "",
+    "triggerId": "4bcb1ad3-1825-48d0-a630-91eda3f79912",
+    "sourceArn": null,
+    "triggerType": "http",
+    "invocationRole": null,
+    "qualifier": "LATEST",
+    "urlInternet": "https://fc-d-canization-fc-d-canization-chtouladjk.cn-hangzhou.fcapp.run",
+    "urlIntranet": "https://fc-d-canization-fc-d-canization-chtouladjk.cn-hangzhou-vpc.fcapp.run",
+    "triggerConfig": {
+      "methods": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE"
+      ],
+      "authType": "anonymous",
+      "disableURLInternet": false
+    },
+    "createdTime": "2023-04-27T06:23:24Z",
+    "lastModifiedTime": "2023-04-27T06:23:24Z",
+    "status": null,
+    "targetArn": null,
+    "name": "defaultTrigger"
+  }
+}

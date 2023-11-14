@@ -1,0 +1,121 @@
+edition: 1.0.0
+name: fc-3d-cartoonization-gpu
+access: default
+vars:
+  region: "cn-shenzhen"
+  service: 'fc-3d-cartoonization-gpu'
+services:
+  model:
+    component: fc
+    props:
+      region: ${vars.region}
+      service:
+        description: fc-3d-cartoonization-gpu
+        internetAccess: true
+        ossMountConfig:
+          mountPoints: []
+        name: model
+      function:
+        handler: index.handler
+        timeout: 7200
+        diskSize: 512
+        caPort: 8080
+        instanceType: fc.gpu.tesla.1
+        runtime: custom-container
+        cpu: 2
+        customContainerConfig:
+          args: ''
+          accelerationType: Default
+          image: "registry.cn-shenzhen.aliyuncs.com/aliyun-fc/3d-cartoonization:v1"
+          # image: "registry.${vars.region}.aliyuncs.com/fc-stable-diffusion/3d-cartoonization:v1"
+          accelerationInfo:
+            status: Preparing
+          command: ''
+          webServerMode: true
+        instanceConcurrency: 100
+        memorySize: 4096
+        environmentVariables: {}
+        gpuMemorySize: 8192
+        name: model
+        asyncConfiguration: {}
+      triggers:
+        - name: defaultTrigger
+          description: ''
+          type: http
+          qualifier: LATEST
+          config:
+            methods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+            authType: anonymous
+            disableURLInternet: false
+      customDomains:
+        - domainName: auto
+          protocol: HTTP
+          routeConfigs:
+            - path: /api/*
+              rewriteConfig:
+                wildcardRules: 
+                  - match: /api/*
+                    replacement: /api/$1
+  web:
+    component: fc
+    actions:
+      pre-deploy:
+        - run: npm i && npm run build
+          path: ./code/web
+    props:
+      region: ${vars.region}
+      service:
+        description: fc-3d-cartoonization-web
+        internetAccess: true
+        ossMountConfig:
+          mountPoints: []
+        name: web
+      function:
+        handler: index.handler
+        description: fc-3d-cartoonization web界面
+        timeout: 6000
+        diskSize: 512
+        caPort: 3000
+        layers:
+          - acs:fc:${vars.region}:official:layers/Nodejs16/versions/2
+        instanceType: c1
+        runtime: custom
+        cpu: 0.5
+        instanceConcurrency: 100
+        memorySize: 512
+        environmentVariables:
+          ENDPOINT: ${model.output.url.custom_domain[0].domain}
+          PATH: >-
+            /opt/nodejs16/bin::/usr/local/bin/apache-maven/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/ruby/bin:/opt/bin:/code:/code/bin
+          NODE_PATH: /opt/nodejs/node_modules
+        name: web
+        codeUri: "code/web"
+        customRuntimeConfig:
+          command:
+            - node
+          args:
+            - serve.js
+      triggers:
+        - name: default-trigger
+          description: ""
+          type: http
+          config:
+            methods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - HEAD
+              - OPTIONS
+            authType: anonymous
+            disableURLInternet: false
+      customDomains:
+        - domainName: auto
+          protocol: HTTP
+          routeConfigs:
+            - path: /*
+  
